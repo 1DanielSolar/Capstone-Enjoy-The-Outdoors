@@ -1,3 +1,6 @@
+document.addEventListener("DOMContentLoaded", init);
+
+
 const nationalParksArray = [
     {
     LocationID: "ABLI",
@@ -6859,3 +6862,61 @@ const nationalParksArray = [
     }
 ]
 
+
+function init() {
+  setupEventListeners();
+}
+
+function populateDropdown(filterType) {
+    const dropdown = document.getElementById("filterDropdown");
+    dropdown.innerHTML = ""; // Clear previous options
+    const data = filterType === "state" ? states : activities; // Assume activities is another array you manage
+
+    const fragment = document.createDocumentFragment();
+
+    data.forEach((item) => {
+        const option = document.createElement("option");
+        option.value = item.name;
+        option.textContent = `${item.name} (${item.level})`; // Modify as per data structure
+        fragment.appendChild(option);
+    });
+
+    dropdown.appendChild(fragment);
+}
+
+function setupEventListeners() {
+    document.getElementById("filterState").addEventListener("change", () => populateDropdown("state"));
+    document.getElementById("filterActivity").addEventListener("change", () => populateDropdown("activity"));
+
+    document.getElementById("filterDropdown").addEventListener("change", showSelectedDetails);
+    document.getElementById("showDetailsBtn").addEventListener("click", showSelectedDetails);
+}
+
+function showSelectedDetails() {
+    const dropdown = document.getElementById("filterDropdown");
+    const selectedValue = dropdown.value;
+    const detailsArea = document.getElementById("resultsContainer"); // Assuming results should be displayed here
+
+    // Assuming you have a method to find details based on selected value
+    const details = findDetails(selectedValue); // This function needs to be defined based on your data handling
+
+    if (details) {
+        detailsArea.innerHTML = `<div class="card">
+            <div class="card-body">
+                <h5 class="card-title">${details.name}</h5>
+                <p class="card-text">Details: ${details.info}</p>
+            </div>
+        </div>`;
+    } else {
+        detailsArea.innerHTML = "No details found.";
+    }
+}
+
+// Placeholder for actual function to find details
+function findDetails(name) {
+    // This should interact with your data array to find the matching item
+    return {
+        name: name,
+        info: "Sample info about " + name // Just a placeholder
+    };
+}
