@@ -3,6 +3,9 @@ body {
     width: 100vw;
     margin: 0px;
     background-color: black;
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    
   }
   
   .rubik-font {
@@ -10,7 +13,7 @@ body {
   }
   
   main {
-    background-image: url("https://cdn.britannica.com/46/193946-050-853B37E0/Yosemite-National-Park-California.jpg");
+    background-image: url("https://w.wallhaven.cc/full/6o/wallhaven-6orjwl.jpg");
     background-position: center 100%;
     background-size: cover;
     height: 100vh;
@@ -107,7 +110,7 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%) scale(0.9);
-    color: rgb(246, 231, 224);
+    color: rgb(0, 0, 0);
     font-size: 1.75rem;
     opacity: 0;
     transition: transform, opacity;
