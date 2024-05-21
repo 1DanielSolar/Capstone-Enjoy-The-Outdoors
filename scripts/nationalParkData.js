@@ -1,5 +1,77 @@
 document.addEventListener("DOMContentLoaded", init);
 
+const parkTypesArray = [
+    "National Park",
+    "National Monument",
+    "Recreation Area",
+    "Scenic Trail",
+    "Battlefield",
+    "Historic",
+    "Memorial",
+    "Preserve",
+    "Island",
+    "River",
+    "Seashore",
+    "Trail",
+    "Parkway"
+]
+const locationsArray = [
+    "Alabama",
+    "Alaska",
+    "American Samoa",
+    "Arizona",
+    "Arkansas",
+    "California",
+    "Colorado",
+    "Connecticut",
+    "Delaware",
+    "DC",
+    "Florida",
+    "Georgia",
+    "Guam",
+    "Hawaii",
+    "Idaho",
+    "Illinois",
+    "Indiana",
+    "Iowa",
+    "Kansas",
+    "Kentucky",
+    "Louisiana",
+    "Maine",
+    "Maryland",
+    "Massachusetts",
+    "Michigan",
+    "Minnesota",
+    "Mississippi",
+    "Missouri",
+    "Montana",
+    "Nebraska",
+    "Nevada",
+    "New Hampshire",
+    "New Jersey",
+    "New Mexico",
+    "New York",
+    "North Carolina",
+    "North Dakota",
+    "Ohio",
+    "Oklahoma",
+    "Oregon",
+    "Pennsylvania",
+    "Puerto Rico",
+    "Rhode Island",
+    "South Carolina",
+    "South Dakota",
+    "Tennessee",
+    "Texas",
+    "Utah",
+    "Vermont",
+    "Virgin Islands",
+    "Virginia",
+    "Washington",
+    "West Virginia",
+    "Wisconsin",
+    "Wyoming"
+]
 
 const nationalParksArray = [
     {
@@ -6864,47 +6936,42 @@ const nationalParksArray = [
 
 
 function init() {
-  setupEventListeners();
+    setupEventListeners();
 }
 
 function populateDropdown(filterType) {
     const dropdown = document.getElementById("filterDropdown");
     dropdown.innerHTML = ""; // Clear previous options
-    const data = filterType === "state" ? states : activities; // Assume activities is another array you manage
 
-    const fragment = document.createDocumentFragment();
+    const data = filterType === "state" ? locationsArray : parkTypesArray;
 
     data.forEach((item) => {
         const option = document.createElement("option");
-        option.value = item.name;
-        option.textContent = `${item.name} (${item.level})`; // Modify as per data structure
-        fragment.appendChild(option);
+        option.value = item; // Use the first element in the sub-array as the value
+        option.textContent = item; // Use the first element in the sub-array as the text
+        dropdown.appendChild(option);
     });
-
-    dropdown.appendChild(fragment);
 }
 
 function setupEventListeners() {
     document.getElementById("filterState").addEventListener("change", () => populateDropdown("state"));
     document.getElementById("filterActivity").addEventListener("change", () => populateDropdown("activity"));
 
-    document.getElementById("filterDropdown").addEventListener("change", showSelectedDetails);
     document.getElementById("showDetailsBtn").addEventListener("click", showSelectedDetails);
 }
 
 function showSelectedDetails() {
     const dropdown = document.getElementById("filterDropdown");
     const selectedValue = dropdown.value;
-    const detailsArea = document.getElementById("resultsContainer"); // Assuming results should be displayed here
+    const detailsArea = document.getElementById("resultsContainer");
 
-    // Assuming you have a method to find details based on selected value
-    const details = findDetails(selectedValue); // This function needs to be defined based on your data handling
+    const details = findDetails(selectedValue);
 
     if (details) {
         detailsArea.innerHTML = `<div class="card">
             <div class="card-body">
-                <h5 class="card-title">${details.name}</h5>
-                <p class="card-text">Details: ${details.info}</p>
+                <h5 class="card-title">${details}</h5>
+                <p class="card-text">Details: ${details}</p>
             </div>
         </div>`;
     } else {
@@ -6912,11 +6979,9 @@ function showSelectedDetails() {
     }
 }
 
-// Placeholder for actual function to find details
 function findDetails(name) {
-    // This should interact with your data array to find the matching item
-    return {
-        name: name,
-        info: "Sample info about " + name // Just a placeholder
-    };
+    const allData = [...locationsArray, ...parkTypesArray];
+    return allData.find(item => item === name);
 }
+
+init();
