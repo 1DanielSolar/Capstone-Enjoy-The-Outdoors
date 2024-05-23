@@ -3,14 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mountain Dropdown</title>
+    <title>Explore National Parks</title>
+    <link rel="stylesheet" href="/css/mountain.css">
 </head>
 <body>
-    <label for="mountainSelect">Choose a mountain:</label>
-    <select id="mountainSelect">
-        <option value="" disabled selected>Select a mountain</option>
-    </select>
 
-    <script src="/scripts/mountainData.js"></script>
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Parks</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
+
+<div>
+    <h1>Mountain Explorer</h1>
+    <label for="mountainDropdown">Select a Mountain:</label>
+    <select id="mountainDropdown">
+        <option value="">--Select a Mountain--</option>
+    </select>
+    <div id="dropDownItem"></div>
+</div>
+
+<footer>
+    © 2024 National Parks: <a href="#">nationalparks.org</a>
+</footer>
+
+<script src="/scripts/mountainData.js"></script>
+<script src="/scripts/mountain.js"></script> 
 </body>
 </html>

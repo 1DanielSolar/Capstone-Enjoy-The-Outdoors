@@ -1,22 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Filter Example</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>National Parks Finder</title>
+  <style>
+    .hidden {
+      display: none;
+    }
+    .park {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin: 10px;
+    }
+    .park img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
 </head>
-<body onload="init()">
-    <label>
-        <input type="radio" name="filterType" id="filterState" value="state"> State
-    </label>
-    <label>
-        <input type="radio" name="filterType" id="filterActivity" value="activity"> Activity
-    </label>
+<body>
+  <h1>Find Your National Park</h1>
+  
+  <div>
+    <input type="radio" id="locationRadio" name="searchType" value="location" checked>
+    <label for="locationRadio">Search by State</label>
     
-    <select id="filterDropdown"></select>
-    <button id="showDetailsBtn">Show Details</button>
-
-    <div id="resultsContainer"></div>
-
-    <script src="demo.js"></script>
+    <input type="radio" id="parkTypeRadio" name="searchType" value="parkType">
+    <label for="parkTypeRadio">Search by Park Type</label>
+  </div>
+  
+  <div>
+    <select id="states">
+      <option value="">Select a state</option>
+    </select>
+    
+    <select id="parktype" class="hidden">
+      <option value="">Select a park type</option>
+    </select>
+  </div>
+  
+  <div>
+    <input type="text" id="inputLocation" placeholder="Search for a park...">
+  </div>
+  
+  <button onclick="clearFilters()">Clear Filters</button>
+  
+  <div id="parkMessage"></div>
+  <div id="myParks"></div>
+  <script src="/demo.js"></script>
+  <script src="/scripts/nationalParkData.js"></script>
 </body>
 </html>

@@ -1,0 +1,78 @@
+body, h1, h2, h3, p, ul, li, figure, figcaption, article, section, header, footer, nav {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #ccc;
+    background-color: #333;
+}
+
+nav {
+    background: #222;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+nav a {
+    color: #fff;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+nav ul {
+    list-style: none;
+    display: inline-block; /* Center align the nav items */
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+input[type="radio"], select {
+    margin: 0 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+select {
+    display: block;
+    margin: 10px auto;
+}
+
+footer {
+    background-color: #111;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+a {
+    color: lightblue;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#filterArea {
+    text-align: center;
+    padding: 20px 0;
+}
