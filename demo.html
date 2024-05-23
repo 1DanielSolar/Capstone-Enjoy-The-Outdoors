@@ -5,50 +5,94 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>National Parks Finder</title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
     .hidden {
       display: none;
     }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .controls {
+      margin-bottom: 20px;
+    }
+    .park-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
     .park {
       border: 1px solid #ccc;
-      padding: 15px;
-      margin: 10px;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
     .park img {
-      max-width: 100%;
-      height: auto;
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .park h3 {
+      margin: 10px 0;
+    }
+    .park p {
+      margin: 5px 0;
+      padding: 0 10px;
+    }
+    .park a {
+      margin-top: auto;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      display: block;
+      border-top: 1px solid #ccc;
+    }
+    .park a:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
-  <h1>Find Your National Park</h1>
-  
-  <div>
-    <input type="radio" id="locationRadio" name="searchType" value="location" checked>
-    <label for="locationRadio">Search by State</label>
+  <div class="container">
+    <h1>Find Your National Park</h1>
     
-    <input type="radio" id="parkTypeRadio" name="searchType" value="parkType">
-    <label for="parkTypeRadio">Search by Park Type</label>
-  </div>
-  
-  <div>
-    <select id="states">
-      <option value="">Select a state</option>
-    </select>
+    <div class="controls">
+      <div>
+        <input type="radio" id="locationRadio" name="searchType" value="location" checked>
+        <label for="locationRadio">Search by State</label>
+        
+        <input type="radio" id="parkTypeRadio" name="searchType" value="parkType">
+        <label for="parkTypeRadio">Search by Park Type</label>
+      </div>
+      
+      <div>
+        <select id="states">
+          <option value="">Select a state</option>
+        </select>
+        
+        <select id="parktype" class="hidden">
+          <option value="">Select a park type</option>
+        </select>
+      </div>
+      
+      <div>
+        <input type="text" id="inputLocation" placeholder="Search for a park...">
+      </div>
+      
+      <button onclick="clearFilters()">Clear Filters</button>
+    </div>
     
-    <select id="parktype" class="hidden">
-      <option value="">Select a park type</option>
-    </select>
+    <div id="parkMessage"></div>
+    <div id="myParks" class="park-grid"></div>
   </div>
-  
-  <div>
-    <input type="text" id="inputLocation" placeholder="Search for a park...">
-  </div>
-  
-  <button onclick="clearFilters()">Clear Filters</button>
-  
-  <div id="parkMessage"></div>
-  <div id="myParks"></div>
-  <script src="/demo.js"></script>
+  <script src="demo.js"></script>
   <script src="/scripts/nationalParkData.js"></script>
 </body>
 </html>
