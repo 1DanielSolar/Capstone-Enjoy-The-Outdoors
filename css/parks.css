@@ -14,7 +14,19 @@ body {
     background-color: #1e1e1e;
     padding: 10px 0;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem; /* Set the same font size for all nav elements */
+  }
+  .nav-container {
+    display: flex;
+    justify-content: space-between; /* Distribute space between items */
+    width: 100%;
+    padding: 0 20px; /* Add some padding for spacing */
+  }
+  .navbar-brand {
+    color: #fff;
+    text-decoration: none;
   }
   nav a {
     color: #ffffff;

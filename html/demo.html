@@ -3,20 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/parks.css">
   <title>National Parks Finder</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
     }
-    .hidden {
-      display: none;
+    nav {
+      width: 100%;
+      background-color: #1e1e1e;
+      padding: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.2rem; /* Set the same font size for all nav elements */
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between; /* Distribute space between items */
+      width: 100%;
+      padding: 0 20px; /* Add some padding for spacing */
+    }
+    .navbar-brand {
+      color: #fff;
+      text-decoration: none;
+    }
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      margin: 0 10px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    nav a:hover {
+      background-color: #333333;
     }
     .container {
+      width: 100%;
       max-width: 1200px;
-      margin: 0 auto;
       padding: 20px;
+      text-align: center;
     }
     .controls {
+      margin-bottom: 20px;
+    }
+    .controls input, .controls select, .controls button {
+      background-color: #333;
+      color: #fff;
+      border: 1px solid #555;
+      padding: 10px;
+      margin: 5px;
+      border-radius: 5px;
+    }
+    .controls button {
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .controls button:hover {
+      background-color: #444;
+    }
+    #inputLocation {
+      width: 100%;
+      max-width: 300px;
+      display: inline-block;
+    }
+    #parkMessage {
       margin-bottom: 20px;
     }
     .park-grid {
@@ -25,12 +85,13 @@
       gap: 20px;
     }
     .park {
-      border: 1px solid #ccc;
+      border: 1px solid #333;
       border-radius: 10px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       text-align: center;
+      background-color: #1e1e1e;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
     .park img {
@@ -52,7 +113,7 @@
       color: white;
       text-decoration: none;
       display: block;
-      border-top: 1px solid #ccc;
+      border-top: 1px solid #555;
     }
     .park a:hover {
       background-color: #0056b3;
@@ -60,39 +121,42 @@
   </style>
 </head>
 <body>
+  <nav>
+    <div class="nav-container">
+      <a class="navbar-brand" href="#">Park Finder</a>
+      <div>
+        <a href="index.html">Home</a>
+        <a href="parks.html">Parks</a>
+        <a href="mountain.html">Mountains</a>
+      </div>
+    </div>
+  </nav>
   <div class="container">
-    <h1>Find Your National Park</h1>
-    
+    <h1>Find Your Natural Escape</h1>
     <div class="controls">
       <div>
         <input type="radio" id="locationRadio" name="searchType" value="location" checked>
         <label for="locationRadio">Search by State</label>
-        
         <input type="radio" id="parkTypeRadio" name="searchType" value="parkType">
         <label for="parkTypeRadio">Search by Park Type</label>
       </div>
-      
       <div>
         <select id="states">
           <option value="">Select a state</option>
         </select>
-        
         <select id="parktype" class="hidden">
           <option value="">Select a park type</option>
         </select>
       </div>
-      
       <div>
         <input type="text" id="inputLocation" placeholder="Search for a park...">
       </div>
-      
       <button onclick="clearFilters()">Clear Filters</button>
     </div>
-    
     <div id="parkMessage"></div>
     <div id="myParks" class="park-grid"></div>
   </div>
-  <script src="demo.js"></script>
+  <script src="/scripts/nationalParks.js"></script>
   <script src="/scripts/nationalParkData.js"></script>
 </body>
 </html>

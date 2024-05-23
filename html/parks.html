@@ -7,46 +7,41 @@
   <title>National Parks Finder</title>
 </head>
 <body>
-    <nav>
-      <div class="nav-container">
+  <nav>
+    <div class="nav-container">
+      <a class="navbar-brand" href="#">Park Finder</a>
+      <div>
         <a href="index.html">Home</a>
         <a href="parks.html">Parks</a>
         <a href="mountain.html">Mountains</a>
-        <a href="gallery.html">Gallery</a>
       </div>
-    </nav>
-    <div class="container">
-      <h1>Find Your National Park</h1>
-      
-      <div class="controls">
-        <div>
-          <input type="radio" id="locationRadio" name="searchType" value="location" checked>
-          <label for="locationRadio">Search by State</label>
-          
-          <input type="radio" id="parkTypeRadio" name="searchType" value="parkType">
-          <label for="parkTypeRadio">Search by Park Type</label>
-        </div>
-        
-        <div>
-          <select id="states">
-            <option value="">Select a state</option>
-          </select>
-          
-          <select id="parktype" class="hidden">
-            <option value="">Select a park type</option>
-          </select>
-        </div>
-        
-        <div>
-          <input type="text" id="inputLocation" placeholder="Search for a park...">
-        </div>
-        
-        <button onclick="clearFilters()">Clear Filters</button>
-      </div>
-      
-      <div id="parkMessage"></div>
-      <div id="myParks" class="park-grid"></div>
     </div>
+  </nav>
+  <div class="container">
+    <h1>Find Your Natural Escape</h1>
+    <div class="controls">
+      <div>
+        <input type="radio" id="locationRadio" name="searchType" value="location" checked>
+        <label for="locationRadio">Search by State</label>
+        <input type="radio" id="parkTypeRadio" name="searchType" value="parkType">
+        <label for="parkTypeRadio">Search by Park Type</label>
+      </div>
+      <div>
+        <select id="states">
+          <option value="">Select a state</option>
+        </select>
+        <select id="parktype" class="hidden">
+          <option value="">Select a park type</option>
+        </select>
+      </div>
+      <div>
+        <input type="text" id="inputLocation" placeholder="Search for a park...">
+      </div>
+      <button onclick="clearFilters()">Clear Filters</button>
+    </div>
+    <div id="parkMessage"></div>
+    <div id="myParks" class="park-grid"></div>
+  </div>
   <script src="/scripts/nationalParks.js"></script>
   <script src="/scripts/nationalParkData.js"></script>
 </body>
