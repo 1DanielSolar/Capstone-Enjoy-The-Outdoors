@@ -1,5 +1,52 @@
 "use strict";
-document.addEventListener("DOMContentLoaded", init);
+const imageArray = [
+    'images/Adams-StoryImage_2.jpg',
+    'images/Bond-StoryImage_3.jpg',
+    'images/Cabot-StoryImg.jpg',
+    'images/Cannon-StoryImg_2.jpg',
+    'images/Carrigain-StoryImage_2.jpg',
+    'images/Carters-StoryImage.jpg',
+    'images/CDome-StoryImage.jpg',
+    'images/Eisenhower-StoryImage_2.jpg',
+    'images/EOsceola-StoryImg_2.jpg',
+    'images/Field-StoryImage.jpg',
+    'images/Flume-StoryImg_2.jpg',
+    'images/Galehead-StoryImg.jpg',
+    'images/Garfield-StoryImage.jpg',
+    'images/Hale-StoryImg.jpg',
+    'images/Hancock-StoryImage_2.jpg',
+    'images/Isolation-StoryImg.jpg',
+    'images/Jackson-StoryImg.jpg',
+    'images/Jefferson-StoryImage_2.jpg',
+    'images/Lafayette-StoryImage_2.jpg',
+    'images/Liberty-StoryImage_2.jpg',
+    'images/Lincoln-StoryImage_2.jpg',
+    'images/M-Tripyramids-StoryImg.jpg',
+    'images/Madison-StoryImage_2.jpg',
+    'images/MidCarter-StoryImage.jpg',
+    'images/Monroe-StoryImage_2.jpg',
+    'images/Moosilauke-StoryImage_2.jpg',
+    'images/Moriah-StoryImg.jpg',
+    'images/NKinsman-StoryImg_2.jpg',
+    'images/NTwin-StoryImage_2.jpg',
+    'images/Osceola-StoryImage_2.jpg',
+    'images/OwlsHead-StoryImg.jpg',
+    'images/Passaconoway-StoryImg.jpg',
+    'images/Pierce-StoryImg.jpg',
+    'images/SHancock-StoryImg.jpg',
+    'images/SKinsman-StoryImage.jpg',
+    'images/STwin-StoryImage_2.jpg',
+    'images/Tecumseh-StoryImg.jpg',
+    'images/Tom-StoryImg.jpg',
+    'images/Tripyramids-StoryImg_2.jpg',
+    'images/Washington-StoryImage_2.jpg',
+    'images/WBond-StoryImage.jpg',
+    'images/Whiteface-StoryImg.jpg',
+    'images/Wildcat-StoryImage.jpg',
+    'images/WildcatD-StoryImg.jpg',
+    'images/Willey-StoryImg_2.jpg',
+    'images/Zeacliff-StoryImg_2.jpg',
+];
 
 const mountainsArray = [
     {
@@ -531,37 +578,50 @@ const mountainsArray = [
         }
     }
 ]
+document.addEventListener("DOMContentLoaded", init);
 
 function init() {
-    populateDropdown();
+    populateDropdownMountain();
+    setupEventListenersMountains();
+    //populateDropdownParks();
+    //setupEventListenersParks()
 }
-
-function populateDropdown() {
-    const dropdown = document.getElementById('mountainDropdown');
-    
-    mountainsArray.forEach(mountain => {
-        const option = document.createElement('option');
-        option.value = mountain.name;
-        option.textContent = mountain.name;
-        dropdown.appendChild(option);
+ 
+function populateDropdownMountain() {
+    const dropdown = document.getElementById("mountainDropdown");
+    const fragment = document.createDocumentFragment();
+ 
+    mountainsArray.forEach((mountains) => {
+      const option = new Option(`${mountains.name} `, mountains.name);
+      fragment.appendChild(option);
     });
-
-    dropdown.addEventListener('change', displayMountainInfo);
+    dropdown.appendChild(fragment);
 }
-
-function displayMountainInfo(event) {
-    const selectedMountainName = event.target.value;
-    const mountain = mountainsArray.find(m => m.name === selectedMountainName);
-
-    if (mountain) {
-        const mountainInfoDiv = document.getElementById('mountainInfo');
-        mountainInfoDiv.innerHTML = `
-            <h2>${mountain.name}</h2>
-            <p><strong>Elevation:</strong> ${mountain.elevation} feet</p>
-            <p><strong>Effort:</strong> ${mountain.effort}</p>
-            <p><strong>Description:</strong> ${mountain.desc}</p>
-            <img src="${mountain.img}" alt="${mountain.name}">
+ 
+function setupEventListenersMountains(){
+    document.getElementById("mountainDropdown").addEventListener("change", displayMountains);
+}
+ 
+function displayMountains(){
+    const selectedMountainName = document.getElementById("mountainDropdown").value;
+    const resultContainer = document.getElementById('resultContainer');
+    resultContainer.innerHTML = ' ';
+ 
+    const filteredMountain = mountainsArray.find(mountain => mountain.name == selectedMountainName);
+        const card = `
+            <div class="col">
+                <div class="card">
+                    <img src="/images/${filteredMountain.img}" class="card-img-top" alt="${filteredMountain.name}">
+                    <div class="card-body">
+                        <h5 class="card-title">${filteredMountain.name}</h5>
+                        <p class="card-text">${filteredMountain.desc}</p>
+                        <p class="card-text"><strong>Effort:</strong> ${filteredMountain.effort}</p>
+                        <p class="card-text"><strong>Elevation:</strong> ${filteredMountain.elevation}</p>
+                        <p class="card-text"><strong>Lat:</strong> ${filteredMountain.coords.lat}, <strong>Lng:</strong> ${filteredMountain.coords.lng}</p>
+                    </div>
+                </div>
+            </div>
         `;
-    }
+        resultContainer.innerHTML = card;
+ 
 }
-
