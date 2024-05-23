@@ -1,3 +1,71 @@
+"use strict";
+document.addEventListener("DOMContentLoaded", init);
+
+
+function init() {
+    populateDropdown();
+    setupEventListeners();
+}
+
+function populateDropdown(filterType) {
+    const dropdown = document.getElementById("mountainDropdown");
+    const fragment = document.createDocumentFragment();
+    dropdown.innerHTML = ""; // Clear previous options
+
+
+    mountainsArray.forEach((mountains) => {
+        const option = document.createElement("option");
+        option.value = mountains.name; // Use the first element in the sub-array as the value
+        option.textContent = `${mountains.name}`; // Use the first element in the sub-array as the text
+        fragment.appendChild(option);
+    });
+}
+
+function setupEventListeners() {
+
+    document.getElementById("mountainDropdown").addEventListener("change", showselectedMountain);
+    document.getElementById("mountainDropdown").addEventListener("change", showSelectedDetailsChange);
+
+}
+
+function showselectedMountain() {
+    document.getElementById("mountainDropdown").textContent = document.getElementById("mountainDropdown").value
+}
+   
+function showselectedMountainChange() {
+    const dropdown = document.getElementById("mountainsDropdown");
+    const selectedMountainName = dropdown.value;
+    const detailsArea = document.getElementById("dropDownItem");
+    
+    const selectedMountain = mountainsArray.find(
+        (mountains) => mountains.name === selectedMountainName
+    );
+    
+    if (selectedMountain) {
+
+        detailsArea.innerHTML = 
+        `<div class="card">
+        <div class="card-body">
+            <img src="${selectedMountain.img}"><br>
+            <strong><Name:</strong>${selectedMountain.name}<br>
+            <strong><Elevation:</strong>${selectedMountain.elevation}<br>
+            <strong><Effort:</strong>${selectedMountain.effort}<br>
+            <strong>Description:</strong>${selectedMountain.desc}<br>
+      `; 
+    } else {
+        detailsArea.innerHTML = "No mountain selected.";
+    }
+}
+
+function findDetails(name) {
+    const allData = [...mountainsArray];
+    return allData.find(item => item === name);
+}
+
+init();
+
+
+
 const mountainsArray = [
     {
         name: "Mt. Washington",
@@ -531,52 +599,3 @@ const mountainsArray = [
 
 
 
-function init() {
-    setupEventListeners();
-}
-
-function populateDropdown(filterType) {
-    const dropdown = document.getElementById("filterDropdown");
-    dropdown.innerHTML = ""; // Clear previous options
-
-
-    data.forEach((item) => {
-        const option = document.createElement("option");
-        option.value = item; // Use the first element in the sub-array as the value
-        option.textContent = item; // Use the first element in the sub-array as the text
-        dropdown.appendChild(option);
-    });
-}
-
-function setupEventListeners() {
-    document.getElementById("filterState").addEventListener("change", () => populateDropdown("state"));
-    document.getElementById("filterActivity").addEventListener("change", () => populateDropdown("activity"));
-
-    document.getElementById("showDetailsBtn").addEventListener("click", showSelectedDetails);
-}
-
-function showSelectedDetails() {
-    const dropdown = document.getElementById("filterDropdown");
-    const selectedValue = dropdown.value;
-    const detailsArea = document.getElementById("resultsContainer");
-
-    const details = findDetails(selectedValue);
-
-    if (details) {
-        detailsArea.innerHTML = `<div class="card">
-            <div class="card-body">
-                <h5 class="card-title">${details}</h5>
-                <p class="card-text">Details: ${details}</p>
-            </div>
-        </div>`;
-    } else {
-        detailsArea.innerHTML = "No details found.";
-    }
-}
-
-function findDetails(name) {
-    const allData = [...mountainsArray];
-    return allData.find(item => item === name);
-}
-
-init();
