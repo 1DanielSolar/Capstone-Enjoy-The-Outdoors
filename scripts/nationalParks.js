@@ -98,20 +98,6 @@ function displayParks(parks) {
   document.getElementById("myParks").innerHTML = display;
 }
 
-// Template function
-/* function parkTemplate(park) {
-  return `
-      <div class="card" style="width: 18rem;">
-          <img src="${park.Image}" class="card-img-top" alt="${park.LocationName}">
-          <div class="card-body">
-              <h5 class="card-title">${park.LocationName}</h5>
-              <p class="card-text">${park.City}, ${park.State}</p>
-              <p class="card-text">Phone: ${park.Phone}</p>
-              ${park.Visit ? `<p class="card-text"><a href="#" onclick="openInNewWindow('${park.Visit}')">Visit Site</a></p>` : ''}
-          </div>
-      </div>`;
-} */
-
 function parkTemplate(park) {
   return `
       <div class="park">
